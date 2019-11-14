@@ -2,8 +2,6 @@ package logger
 
 import (
 	"os"
-//	"os/signal"
-//	"syscall"
 
 	"github.com/blendle/zapdriver"
 	"go.uber.org/zap"
