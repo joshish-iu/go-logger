@@ -37,7 +37,7 @@ func New(service, version string, options ...zap.Option) (*zap.Logger, error) {
 		zapdriver.Label("version", version),
 	)
 
-	go levelToggler(level)
+	//go levelToggler(level)
 
 	return config.Build(append(options, stackcore, fields)...)
 }
@@ -54,17 +54,17 @@ func Must(zaplog *zap.Logger, err error) *zap.Logger {
 	return zaplog
 }
 
-func levelToggler(level zap.AtomicLevel) {
-	ch := make(chan os.Signal, 1)
-	signal.Notify(ch, syscall.SIGUSR1)
+// func levelToggler(level zap.AtomicLevel) {
+// 	ch := make(chan os.Signal, 1)
+// 	signal.Notify(ch, syscall.SIGUSR1)
 
-	for {
-		<-ch
+// 	for {
+// 		<-ch
 
-		if level.Level() == zap.DebugLevel {
-			level.SetLevel(zap.InfoLevel)
-		} else {
-			level.SetLevel(zap.DebugLevel)
-		}
-	}
-}
+// 		if level.Level() == zap.DebugLevel {
+// 			level.SetLevel(zap.InfoLevel)
+// 		} else {
+// 			level.SetLevel(zap.DebugLevel)
+// 		}
+// 	}
+// }
